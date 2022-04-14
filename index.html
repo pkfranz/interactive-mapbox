@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mapbox Interactive Template</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="box">
+      <h1>Mapbox Interactive Template</h1>
+      <h2>Subhead goes here</h2>
+      <div id="mobile">
+          <hr />
+          <div id="mapInset"></div>
+          <p id="tagline">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br />
+              <!--<nav id="menu"><h4>Toggle map views</h4></nav>-->
+          </p>
+
+          <hr />
+
+          <p id="tagline">
+              Data by <a id="ac" href="https://www.paul-franz.com/aboutme.html" target="_blank">Researcher</a><br />
+              Map created by <a id="ac" href="https://www.paul-franz.com/" target="_blank">Paul Franz</a>
+          </p>
+
+          <!-- Company/client logo -->
+
+          <img id="floatleft" src="img/company.jpg" />
+
+          <p id="tagline">&nbsp;&nbsp;<a id="ac" href="https://www.paul-franz.com" target="_blank">NGO</a></p>
+      </div>
+  </div>
+
+<div id="map"></div>
+
+<script>
+
+// Limit scroll distance for users.
+
+// const bounds = [
+// [32.741089,48.780820], // Southwest coordinates
+// [39.725647,51.128706] // Northeast coordinates
+// ];
+
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYXRsYW50aWNpc3QiLCJhIjoiY2s0OHB6bWFhMG5mZDNtb2N4bWFxYTdxbSJ9.SOL_A0sqNQ87CnPl7w4VPw';
+
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/atlanticist/cl1kry7a0000114mnwfq6wykm',
+        center: [-73.8781294, 40.7634923], // starting position [lng, lat]
+        zoom: 9.5,
+        bearing:  17,
+        minZoom: 9.5,
+
+        // Enable to limit pannable range
+
+        // maxBounds: bounds,
+        pitch: 30
+      });
+
+      const mapInset = new mapboxgl.Map({
+          container: 'mapInset',
+          style: 'mapbox://styles/atlanticist/cl1kryk2h000115qfguehsi2l',
+          center: [-73.8781294, 40.7634923],
+          interactive: false,
+          zoom: 3,
+          attributionControl: false
+      });
+
+map.addControl(new mapboxgl.FullscreenControl());
+map.addControl(new mapboxgl.NavigationControl());
+
+// Disable mousewheel interaction with map
+
+// map.scrollZoom.disable();
+
+map.on('load', () => {
+
+    map.addSource('satimagery', {
+        'type': 'raster',
+        'url': 'mapbox://mapbox.satellite'
+    });
+
+    map.addLayer({
+        'id': 'Satellite data',
+        'source': 'satimagery',
+        'type': 'raster'
+    });
+
+
+    map.addSource('places', {
+        'type': 'geojson',
+        'data': 'geojson/data.geojson'
+    });
+
+    map.addLayer({
+        'id': 'places',
+        'type': 'symbol',
+        'source': 'places',
+        'layout': {
+            'icon-image': '{icon}',
+            'icon-allow-overlap': true
+        }
+    });
+
+});
+
+map.on('click', 'places', (e) => {
+    map.flyTo({
+        center: e.features[0].geometry.coordinates
+    });
+});
+
+map.on('click', 'places', (e) => {
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const name = e.features[0].properties.name;
+    const date = e.features[0].properties.date;
+    const websource1 = e.features[0].properties.websource1;
+    const websource2 = e.features[0].properties.websource2;
+    const websource3 = e.features[0].properties.websource3;
+
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+
+    new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML('<h4 class="infobox-name">' + name + '</h4><h4 class="infobox-date">Date: </h4><p class="infobox-dateline">' + date + '</p><br /><hr />' + websource1 + websource2 + websource3)
+        .addTo(map);
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'places', () => {
+    map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'places', () => {
+    map.getCanvas().style.cursor = '';
+});
+</script>
+
+</body>
+</html>

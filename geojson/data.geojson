@@ -1,0 +1,32 @@
+{
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-73.9761316, 40.7524739]
+        },
+        "properties": {
+            "name": "New York City",
+            "date": "March 6, 2022",
+            "websource1": "",
+            "websource2": "",
+            "websource3": "",
+            "icon": "red-dot2"
+        }
+    }, {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-73.850306, 40.7570876]
+        },
+        "properties": {
+            "name": "The best baseball team",
+            "date": "March 16, 2022",
+            "websource1": "",
+            "websource2": "",
+            "websource3": "",
+            "icon": "red-dot2"
+        }
+    }]
+}

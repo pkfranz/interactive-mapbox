@@ -1,0 +1,152 @@
+body {
+     margin: 0;
+     padding: 0;
+}
+ #map {
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     width: 100%;
+}
+ #menu {
+     background: #fff;
+     position: relative;
+     z-index: 2;
+     width: 250px;
+     text-align: left;
+     font-family: 'Montserrat', sans-serif;
+     margin-bottom: 30px;
+}
+ #menu a {
+     font-size: 13px;
+     color: #404040;
+     display: block;
+     margin: 0;
+     padding: 0;
+     padding: 10px;
+     text-decoration: none;
+     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+     text-align: left;
+     background: #e1e1e1;
+}
+ #ac {
+     color: #005596;
+}
+ #menu a::before {
+     content: "☐ ";
+}
+ #menu a:last-child {
+     border: none;
+}
+ #menu a:hover {
+     background-color: #f8f8f8;
+     color: #404040;
+}
+ #menu a.active {
+     background-color: #3887be;
+     color: #ffffff;
+}
+ #menu a.active::before {
+     content: "🗹 ";
+}
+ #menu a.active:hover {
+     background: #3074a4;
+}
+ h1 {
+     font-family: 'Montserrat', sans-serif;
+     font-weight: 700;
+     font-size: 24px;
+     line-height: 28px;
+     padding: 0;
+     margin: 0;
+}
+ h2 {
+     font-family: 'Montserrat', sans-serif;
+     color: #747D82;
+     font-size:16px;
+     margin-top: 0;
+}
+ h4.infobox-name {
+     font-size: 18px;
+     margin-top: 10px;
+     margin-bottom: 0;
+     font-family: 'Montserrat', sans-serif;
+}
+ h4.infobox-date {
+     font-size: 14px;
+     margin-bottom: 10px;
+     display: inline;
+     font-family: 'Montserrat', sans-serif;
+}
+ p.infobox-dateline {
+     margin: 0;
+     display:inline;
+     font-family: 'Montserrat', sans-serif;
+}
+ #floatleft {
+     float: left;
+}
+ #tagline {
+     vertical-align:middle;
+     color: #747D82;
+     font-family: 'Montserrat', sans-serif;
+     width: 270px;
+}
+ .box {
+     background: #FFFFFF;
+     position:absolute;
+     top: 10px;
+     left: 10px;
+     z-index: 1;
+     border-radius: 4px;
+     padding: 16px;
+     box-shadow: 0 0px 16px rgb(0 0 0 / 48%);
+     font-family: 'Montserrat', sans-serif;
+}
+ .mapboxgl-popup-content {
+     position: relative;
+     background: #fff;
+     border-radius: 3px;
+     box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+     padding: 10px 10px 15px;
+     pointer-events: auto;
+     overflow-y: scroll !important;
+}
+ .mapboxgl-popup-content strong {
+     font-family: 'Montserrat', sans-serif;
+     font-size: 24px;
+}
+ .mapboxgl-popup-close-button {
+     position: absolute;
+     right: 5px;
+     top: 5px;
+     border: 0;
+     border-radius: 25px;
+     cursor: pointer;
+     background-color: transparent;
+    /* height: 50px;
+     */
+    /* width: 50px;
+     */
+     font-size: 30px;
+     background: #ccc;
+}
+ #mapInset {
+     bottom:50px;
+     right:30px;
+     height: 180px;
+     width:250px;
+     max-width:100%;
+     position: fixed;
+     z-index: 1;
+     pointer-events: none;
+     border: solid .5px #ccc;
+}
+ #mapInset .mapboxgl-ctrl-bottom-left{
+     display: none;
+}
+ @media screen and (max-width: 800px) {
+     #mobile {
+         display:none;
+    }
+}
