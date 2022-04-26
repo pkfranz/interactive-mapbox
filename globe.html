@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display a web map using an alternate projection</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2-globe.beta/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2-globe.beta/mapbox-gl.js"></script>
+<link href="css/style.css" rel="stylesheet" />
+<style>
+body { margin: 0; padding: 0; background: black;}
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+	<div class="box">
+      <h1>Mapbox Interactive Template</h1>
+      <h2>Subhead goes here</h2>
+      <div id="mobile">
+          <hr />
+          <!--<div id="mapInset"></div>-->
+          <p id="tagline">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br />
+              <!--<nav id="menu"><h4>Toggle map views</h4></nav>-->
+          </p>
+
+          <hr />
+
+          <p id="tagline">
+              Data by <a id="ac" href="https://www.paul-franz.com/aboutme.html" target="_blank">Researcher</a><br />
+              Map template created by <a id="ac" href="https://www.paul-franz.com/" target="_blank">Paul Franz</a>
+          </p>
+
+          <!-- Company/client logo -->
+
+          <img id="floatleft" src="img/company.jpg" />
+
+          <p id="tagline">&nbsp;&nbsp;<a id="ac" href="https://www.paul-franz.com" target="_blank">NGO</a></p>
+      </div>
+  </div>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZnJhbnppbmR1c3RyaWVzIiwiYSI6ImNrZXN6bDI0ZDE5ejMycm1yMzQ4YTcxcmkifQ.aL6yg8sRwBFNq_7Trmtw9Q';
+const map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/franzindustries/cl27xqhk6000t14nu98abpu4o',
+center: [31.7363244, 47.5587787],
+zoom: 3,
+projection: 'globe' // starting projection
+});
+
+map.addControl(new mapboxgl.FullscreenControl());
+map.addControl(new mapboxgl.NavigationControl());
+
+</script>
+
+</body>
+</html>
